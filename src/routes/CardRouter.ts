@@ -12,5 +12,6 @@ cardRouter.post('/cards', CardController.create)
 
 //UPDATE
 //DELETE
+cardRouter.delete('/cards/:id', CardController.delete)
 
 export default cardRouter

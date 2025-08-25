@@ -24,6 +24,17 @@ class CardController{
 
             return res.json(card)
       }
+
+      async delete(req: Request, res: Response){
+            const id: string = req.params.id || ''
+            const cardDeleted: boolean = await CardModel.delete(id)
+
+            if(!cardDeleted){
+                  return res.status(404).json({error: 'Card não localizado'})
+            }
+
+            return res.send('OK')
+      }
 }
 
 export default new CardController
