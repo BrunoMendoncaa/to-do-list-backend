@@ -6,6 +6,13 @@ class CardController{
             const cards = await CardModel.index()
             res.json(cards)
       }
+
+      async create(req: Request, res: Response){
+            const {title, description} = req.body
+            const newCard = await CardModel.create({title, description})
+
+            res.status(201).json(newCard)
+      }
 }
 
 export default new CardController
