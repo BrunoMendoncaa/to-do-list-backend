@@ -13,6 +13,17 @@ class CardController{
 
             res.status(201).json(newCard)
       }
+
+      async getById(req: Request, res: Response){
+            const id: string = req.params.id || ''
+            const card = await CardModel.getById(id)
+
+            if(!card){
+                  return res.status(404).json({error: 'Card não localizado.'})
+            }
+
+            return res.json(card)
+      }
 }
 
 export default new CardController

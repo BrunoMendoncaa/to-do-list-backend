@@ -12,6 +12,7 @@ interface ICARD extends INEWCARD{
 
 class CardModel{
       cards: Array<ICARD>
+      card: ICARD | undefined
 
       constructor(){
             this.cards = []
@@ -38,9 +39,18 @@ class CardModel{
             }
 
             this.cards.push(newCard)
-            
+
             return newCard
       }
+
+      getById(id: string){
+            const cardIndex: number = this.cards.findIndex(card => card.id == id)
+            if(cardIndex < 0){return}
+
+            const card: ICARD | undefined = this.cards[cardIndex]
+            return card
+      }
 }
+
 
 export default new CardModel()
