@@ -79,6 +79,19 @@ class CardModel{
 
             return card
       }
+
+      status(id: string): boolean{
+            const card: ICARD | undefined = this.cards.find(card => card.id == id)
+            if(!card){return false}
+
+            if(card.finished){
+                  card['finished'] = false
+            }else{
+                  card['finished'] = true
+            }
+
+            return true
+      }
 }
 
 

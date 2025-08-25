@@ -9,6 +9,7 @@ cardRouter.get('/cards/:id', CardController.getById)
 
 //POST
 cardRouter.post('/cards', CardController.create)
+cardRouter.post('/cards/:id', CardController.status)
 
 //UPDATE
 cardRouter.put('/cards/:id', CardController.update)

@@ -44,7 +44,7 @@ class CardController{
             if(!req.body){
                   return res.status(400).json({error: 'Nenhum item a ser modificado'})
             }
-            
+
             if (req.body.title){title = req.body.title}
             if (req.body.description){description = req.body.description}
 
@@ -55,6 +55,15 @@ class CardController{
             }
 
             return res.json(card)
+      }
+
+      async status(req: Request, res: Response){
+            const id: string = req.params.id || ''
+            const statusChanged = await CardModel.status(id)
+
+            if(!statusChanged){return res.status(404).json({error: 'Card não localizado'})}
+            
+            res.send('OK')
       }
 }
 
