@@ -11,6 +11,8 @@ cardRouter.get('/cards/:id', CardController.getById)
 cardRouter.post('/cards', CardController.create)
 
 //UPDATE
+cardRouter.put('/cards/:id', CardController.update)
+
 //DELETE
 cardRouter.delete('/cards/:id', CardController.delete)
 

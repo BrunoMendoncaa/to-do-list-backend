@@ -10,6 +10,11 @@ interface ICARD extends INEWCARD{
       finished: boolean
 }
 
+interface ICARDUPDATE {
+      title ?: string | undefined
+      description ?: string | undefined
+}
+
 class CardModel{
       cards: Array<ICARD>
 
@@ -60,6 +65,19 @@ class CardModel{
             cardDeleted = true
 
             return cardDeleted
+      }
+
+      update(id: string, content: ICARDUPDATE): ICARD | undefined{
+            const {title, description} = content
+            const card: ICARD | undefined = this.cards.find(card => card.id == id)
+            if(!card){return}
+
+            if(title){card['title'] = title}
+            if(description){card['description'] = description}
+
+            card['updatedAt'] = new Date()
+
+            return card
       }
 }
 
