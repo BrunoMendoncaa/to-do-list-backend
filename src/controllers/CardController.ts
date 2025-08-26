@@ -38,12 +38,7 @@ class CardController{
 
       async update(req: Request, res: Response){
             const id = req.params.id || ''
-            let title: string | undefined = undefined
-            let description: string | undefined = undefined
-
-            if (req.body.title){title = req.body.title}
-            if (req.body.description){description = req.body.description}
-
+            const {title, description} = req.body
             const card = await CardModel.update(id, {title, description})
 
             if(!card){
