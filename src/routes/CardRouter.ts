@@ -1,5 +1,6 @@
 import CardController from "../controllers/CardController.js"
 import { Router } from "express"
+import { bodyNotNull } from "../middllewares/CardMiddlleware.js"
 
 const cardRouter = Router()
 
@@ -12,7 +13,7 @@ cardRouter.post('/cards', CardController.create)
 cardRouter.post('/cards/:id', CardController.status)
 
 //UPDATE
-cardRouter.put('/cards/:id', CardController.update)
+cardRouter.put('/cards/:id', bodyNotNull, CardController.update)
 
 //DELETE
 cardRouter.delete('/cards/:id', CardController.delete)

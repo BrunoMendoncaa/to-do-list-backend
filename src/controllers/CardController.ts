@@ -40,10 +40,6 @@ class CardController{
             const id = req.params.id || ''
             let title: string | undefined = undefined
             let description: string | undefined = undefined
-            
-            if(!req.body){
-                  return res.status(400).json({error: 'Nenhum item a ser modificado'})
-            }
 
             if (req.body.title){title = req.body.title}
             if (req.body.description){description = req.body.description}
