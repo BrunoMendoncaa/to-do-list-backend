@@ -38,3 +38,8 @@ export function haveTitle(req: Request, res: Response, next: NextFunction){
       }
       next()
 }
+
+export function logRouter(req: Request, res: Response, next: NextFunction){
+      console.log(`${req.method} ${req.url}  [${new Date().toLocaleDateString('pt-BR')}]`)
+      next()
+}

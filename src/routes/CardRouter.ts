@@ -1,8 +1,10 @@
 import CardController from "../controllers/CardController.js"
 import { Router } from "express"
-import { bodyNotNull, haveBody, haveTitle } from "../middllewares/CardMiddlleware.js"
+import { bodyNotNull, haveBody, haveTitle, logRouter } from "../middllewares/CardMiddlleware.js"
 
 const cardRouter = Router()
+
+cardRouter.use(logRouter)
 
 //GET
 cardRouter.get('/cards', CardController.index)
