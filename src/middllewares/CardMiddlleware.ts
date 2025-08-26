@@ -17,6 +17,10 @@ const emptyTitleAndDescription: IERRORRETURN = {
       error: 'title or description is required'
 }
 
+const emptyID: IERRORRETURN = {
+      error: 'id param is required'
+}
+
 export function haveBody(req: Request, res: Response, next: NextFunction){
       if(!req.body){
             return ErrorRequests.badRequest(res, emptyBody)
@@ -43,3 +47,4 @@ export function logRouter(req: Request, res: Response, next: NextFunction){
       console.log(`${req.method} ${req.url}  [${new Date().toLocaleDateString('pt-BR')}]`)
       next()
 }
+
