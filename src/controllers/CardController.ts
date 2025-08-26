@@ -20,7 +20,6 @@ class CardController{
       async create(req: Request, res: Response){
             const {title, description} = req.body
             const newCard = await CardModel.create({title, description})
-
             res.status(201).json(newCard)
       }
 
