@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
+import ErrorRequests from "../helpers/ErrorRequests.js"
 
 interface IERRORRETURN {
       error: string
@@ -17,18 +18,23 @@ const emptyTitleAndDescription: IERRORRETURN = {
 }
 
 export function haveBody(req: Request, res: Response, next: NextFunction){
-      if(!req.body){return res.status(400).json(emptyBody)}
+      if(!req.body){
+            return ErrorRequests.badRequest(res, emptyBody)
+      }
       next()
 }
 
 export function bodyNotNull(req: Request, res: Response, next: NextFunction){
       const {title, description} = req.body
-      if(!title && !description){return res.status(400).json(emptyTitleAndDescription)}
+      if(!title && !description){
+            return ErrorRequests.badRequest(res, emptyTitleAndDescription)
+      }
       next()
 }
 
 export function haveTitle(req: Request, res: Response, next: NextFunction){
-      if(!req.body.title){return res.status(400).json(emptyTitle)}
-
+      if(!req.body.title){
+            return ErrorRequests.badRequest(res, emptyTitle)
+      }
       next()
 }
