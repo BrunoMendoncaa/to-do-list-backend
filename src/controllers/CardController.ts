@@ -1,5 +1,15 @@
 import CardModel from "../models/CardModel.js"
 import type { Request, Response } from "express"
+import ErrorRequests from "../helpers/ErrorRequests.js"
+
+interface ICARDNOTFIND {
+      error: string
+}
+
+const cardNotFind: ICARDNOTFIND = {
+      error: 'card not finded'
+}
+
 
 class CardController{
       async index(req: Request, res: Response){
@@ -17,22 +27,14 @@ class CardController{
       async getById(req: Request, res: Response){
             const id: string = req.params.id || ''
             const card = await CardModel.getById(id)
-
-            if(!card){
-                  return res.status(404).json({error: 'Card não localizado.'})
-            }
-
+            if(!card){return ErrorRequests.notFind(res, cardNotFind)}
             return res.json(card)
       }
 
       async delete(req: Request, res: Response){
             const id: string = req.params.id || ''
             const cardDeleted: boolean = await CardModel.delete(id)
-
-            if(!cardDeleted){
-                  return res.status(404).json({error: 'Card não localizado'})
-            }
-
+            if(!cardDeleted){return ErrorRequests.notFind(res, cardNotFind)}
             return res.send('OK')
       }
 
@@ -40,20 +42,14 @@ class CardController{
             const id = req.params.id || ''
             const {title, description} = req.body
             const card = await CardModel.update(id, {title, description})
-
-            if(!card){
-                  return res.status(404).json({error: 'Card não localizado'})
-            }
-
+            if(!card){return ErrorRequests.notFind(res, cardNotFind)}
             return res.json(card)
       }
 
       async status(req: Request, res: Response){
             const id: string = req.params.id || ''
             const statusChanged = await CardModel.status(id)
-
-            if(!statusChanged){return res.status(404).json({error: 'Card não localizado'})}
-            
+            if(!statusChanged){return ErrorRequests.notFind(res, cardNotFind)}
             res.send('OK')
       }
 }
