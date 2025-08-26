@@ -2,11 +2,11 @@ import CardModel from "../models/CardModel.js"
 import type { Request, Response } from "express"
 import ErrorRequests from "../helpers/ErrorRequests.js"
 
-interface ICARDNOTFIND {
+interface IERROR {
       error: string
 }
 
-const cardNotFind: ICARDNOTFIND = {
+const cardNotFind: IERROR = {
       error: 'card not finded'
 }
 
